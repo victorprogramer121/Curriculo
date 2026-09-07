@@ -187,9 +187,22 @@ header h2{
 }
 
 .cards{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
+    display:flex;
     gap:25px;
+    overflow-x:auto;
+}
+
+.cards::-webkit-scrollbar{
+    height:10px;
+}
+
+.cards::-webkit-scrollbar-thumb{
+    background:var(--primary);
+    border-radius:20px;
+}
+
+.cards::-webkit-scrollbar-track{
+    background:#898d98;
 }
 
 a {
@@ -295,12 +308,6 @@ a {
     top:20px;
     font-size:2rem;
     cursor:pointer;
-}
-
-#imagemProjeto{
-    width:100%;
-    border-radius:12px;
-    margin:25px 0;
 }
 
 #dialogo{

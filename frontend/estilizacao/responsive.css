@@ -54,7 +54,9 @@
     }
 
     .cards{
+        display: grid;
         grid-template-columns:1fr;
+        overflow-x:visible;
     }
 
     .project-card{
