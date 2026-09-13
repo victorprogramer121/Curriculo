@@ -77,6 +77,37 @@ header h2{
     font-weight:500;
 }
 
+.voz{
+    position:fixed;
+    right:22px;
+    z-index:999;
+    top:65px;
+}
+
+.voz button{
+    width:43px;
+    height:43px;
+    border:none;
+    border-radius:50%;
+    background-color:var(--primary);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 4px 14px rgba(0,0,0,.35);
+}
+
+.voz button:hover{
+    transform:scale(1.08);
+}
+
+.voz button .material-symbols-outlined{
+    font-size:28px;
+    line-height:1;
+    color:var(--background);
+}
+
 .conteudo{
     display:grid;
     grid-template-columns:320px 1fr;

@@ -11,7 +11,6 @@ const barras = document.querySelectorAll(".progresso");
 const mensagemInicial =
 "Olá! Seja bem-vindo ao meu espaço. Aqui você encontrará um pouco da minha trajetória, tecnologias que utilizo e alguns projetos desenvolvidos por mim. Espero que goste!";
 
-
 let modeloCarregado = false;
 
 
@@ -140,4 +139,97 @@ function fecharDialogo(){
 
 }
 
-s.setAttribute("data-trigger", "triggerId");
+document.addEventListener("DOMContentLoaded", () => {
+
+    try {
+
+        let vozAtivada = false;
+        const sintetizador = window.speechSynthesis;
+        let vozPortugues = null;
+
+        if (!sintetizador) return;
+
+        function carregarVozes() {
+            const vozes = sintetizador.getVoices();
+            vozPortugues =
+                vozes.find(v => v.lang === "pt-BR") ||
+                vozes.find(v => v.lang.startsWith("pt")) ||
+                null;
+        }
+        carregarVozes();
+        if (sintetizador.onvoiceschanged !== undefined) {
+            sintetizador.onvoiceschanged = carregarVozes;
+        }
+
+        function falar(texto) {
+            if (!vozAtivada || !texto) return;
+            sintetizador.cancel();
+            const fala = new SpeechSynthesisUtterance(texto);
+            fala.lang = "pt-BR";
+            if (vozPortugues) fala.voice = vozPortugues;
+            fala.rate = 1;
+            fala.pitch = 1;
+            fala.volume = 1;
+            sintetizador.speak(fala);
+        }
+
+        const btnAcessibilidade = document.getElementById("triggerId");
+        const a11yStatus = document.getElementById("a11yStatus");
+
+        if (!btnAcessibilidade) return;
+
+        function alternarVoz() {
+            vozAtivada = !vozAtivada;
+
+            btnAcessibilidade.classList.toggle("is-active", vozAtivada);
+            btnAcessibilidade.setAttribute("aria-pressed", String(vozAtivada));
+            btnAcessibilidade.setAttribute(
+                "aria-label",
+                vozAtivada ? "Desativar leitura por voz" : "Ativar leitura por voz"
+            );
+
+
+            if (vozAtivada) {
+                falar("Acessibilidade ativada. Passe o mouse pelos elementos para ouvir a descrição.");
+            } else {
+                sintetizador.cancel();
+            }
+        }
+
+        btnAcessibilidade.addEventListener("click", alternarVoz);
+
+        document.addEventListener("keydown", (e) => {
+            if (document.activeElement && ["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) return;
+            if (e.key.toLowerCase() === "v") alternarVoz();
+        });
+
+        document.addEventListener("mouseover", (event) => {
+            const elemento = event.target.closest(".tts-trigger");
+            if (!elemento || !vozAtivada) return;
+            if (elemento._ttsHover) return;
+            elemento._ttsHover = true;
+            falar(elemento.getAttribute("data-tts"));
+        });
+
+        document.addEventListener("mouseout", (event) => {
+            const elemento = event.target.closest(".tts-trigger");
+            if (!elemento) return;
+            if (elemento.contains(event.relatedTarget)) return;
+            elemento._ttsHover = false;
+        });
+
+        document.addEventListener("focusin", (event) => {
+            const elemento = event.target.closest(".tts-trigger");
+            if (elemento) falar(elemento.getAttribute("data-tts"));
+        });
+
+        document.addEventListener("click", (event) => {
+            const elemento = event.target.closest(".tts-trigger");
+            if (elemento && elemento !== btnAcessibilidade) falar(elemento.getAttribute("data-tts"));
+        });
+
+    } catch (err) {
+        console.error("Erro ao iniciar acessibilidade por voz:", err);
+    }
+
+});

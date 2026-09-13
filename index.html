@@ -14,6 +14,7 @@
     <!-- Biblioteca para renderizar modelos 3D (.glb) -->
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script src = " https://cdn.userway.org/widget.js "  data-account = " tLBuE96xZS " data-color="#ffff00" data-type="1" data-mobile="true"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=volume_up" />
 
 </head>             
 <body>
@@ -23,10 +24,11 @@
 <div id="overlay"></div>
 <div class="curriculo">
     <header>
-        <h1>Victor Jatobá Alcântara Batista</h1>
-        <h2>Desenvolvedor Full Stack</h2>
-        <button id="triggerId">Acessibilidade</button>
-
+        <h1 class="tts-trigger" data-tts="Victor Jatobá Alcântara Batista.">Victor Jatobá Alcântara Batista</h1>
+        <h2 class="tts-trigger" data-tts="Desenvolvedor Full Stack.">Desenvolvedor Full Stack</h2>
+        <div class="voz">
+            <button id="triggerId" class="tts-trigger" type="button" aria-pressed="false" aria-label="Ativar leitura por voz" title="Atalho: tecla V" data-tts="Acessibilidade ativada. Passe o mouse pelos elementos para ouvir a descrição."><span class="material-symbols-outlined">volume_up</span></button>
+        </div>
     </header>
     <section class="conteudo">
         <div class="avatar">
@@ -43,11 +45,11 @@
                 interaction-prompt="none"
                 disable-zoom
                 disable-pan
-                style="width: 100%; height: 320px; background-color: transparent;">
+                style="width: 100%; height: 320px; background-color: transparent">
             </model-viewer>
         </div>
         <div class="informacoes">
-            <div class="card">
+            <div class="card tts-trigger" data-tts="Sobre mim. Sou apaixonado por tecnologia, desenvolvimento web, banco de dados e tenho um hobby em criação de jogos. Meu objetivo é transformar ideias em aplicações intuitivas e eficientes.">
                 <h3>Sobre mim</h3>
                 <p>
                     Sou apaixonado por tecnologia,
@@ -59,44 +61,44 @@
                 </p>
             </div>
             <div class="card">
-                <h3>Especialidades</h3>
-                <div class="skill">
+                <h3 class="tts-trigger" data-tts="Especialidades.">Especialidades</h3>
+                <div class="skill tts-trigger" data-tts="HTML: 95 por cento.">
                     <span>HTML</span>
                     <div class="barra">
                         <div class="progresso html"></div>
                     </div>
                 </div>
-                <div class="skill">
+                <div class="skill tts-trigger" data-tts="CSS: 90 por cento.">
                     <span>CSS</span>
                     <div class="barra">
                         <div class="progresso css"></div>
                     </div>
                 </div>
-                <div class="skill">
+                <div class="skill tts-trigger" data-tts="JavaScript: 92 por cento.">
                     <span>JavaScript</span>
                     <div class="barra">
                         <div class="progresso js"></div>
                     </div>
                 </div>
-                <div class="skill">
+                <div class="skill tts-trigger" data-tts="Java: 62 por cento.">
                     <span>Java</span>
                     <div class="barra">
                         <div class="progresso java"></div>
                     </div>
                 </div>
-                <div class="skill">
+                <div class="skill tts-trigger" data-tts="MySQL: 87 por cento.">
                     <span>MySQL</span>
                     <div class="barra">
                         <div class="progresso mysql"></div>
                     </div>
                 </div>
-                <div class="skill">
+                <div class="skill tts-trigger" data-tts="Python: 77 por cento.">
                     <span>Python</span>
                     <div class="barra">
                         <div class="progresso python"></div>
                     </div>
                 </div>
-                <div class="skill">
+                <div class="skill tts-trigger" data-tts="TypeScript: 85 por cento.">
                     <span>TypeScript</span>
                     <div class="barra">
                         <div class="progresso typescript"></div>
@@ -106,11 +108,11 @@
         </div>
     </section>
     <section class="projetos">
-        <h2>
+        <h2 class="tts-trigger" data-tts="Projetos.">
             Projetos
         </h2>
         <div class="cards">
-            <div class="project-card" data-project="doce">
+            <div class="project-card tts-trigger" data-project="doce" data-tts="DoceEncanto. Cardápio de uma doceria.">
                 <a href="https://github.com/victorprogramer121/DoceEncanto" target="_blank" rel="external">
                     <video autoplay muted loop>
                         <source src="frontend/assets/videos/DoceEncanto.mp4" type="video/mp4">
@@ -122,7 +124,7 @@
                     </p>
                 </a>
             </div>
-            <div class="project-card" data-project="uptickets">
+            <div class="project-card tts-trigger" data-project="uptickets" data-tts="UpTickets. Sistema de Eventos.">
                 <a href="https://github.com/victorprogramer121/UpTickets" target="_blank" rel="external">
                     <video autoplay muted loop>
                         <source src="frontend/assets/videos/uptickets.mp4" type="video/mp4">
@@ -134,7 +136,7 @@
                     </p>
                 </a>
             </div>
-            <div class="project-card" data-project="spotify">
+            <div class="project-card tts-trigger" data-project="spotify" data-tts="Spotify. Reprodução de um sistema.">
                 <a href="https://github.com/victorprogramer121/projetoSpotify"  target="_blank" rel="external">
                     <video autoplay muted loop>
                         <source src="frontend/assets/videos/Spotify.mp4" type="video/mp4">
@@ -146,7 +148,7 @@
                     </p>
                 </a>
             </div>
-            <div class="project-card" data-project="waygo">
+            <div class="project-card tts-trigger" data-project="waygo" data-tts="WayGo. Banco de Dados de um sistema para viagens B2B.">
                 <a href="https://github.com/leandroxelor00/banco-de-dados" target="_blank" rel="external">
                     <video autoplay muted loop>
                         <source src="frontend/assets/videos/banco_dados.mp4" type="video/mp4">
@@ -158,7 +160,7 @@
                     </p>
                 </a>
             </div>
-            <div class="project-card" data-project="motionVerse">
+            <div class="project-card tts-trigger" data-project="motionVerse" data-tts="Motion Verse. Jogo em 2D que capta a mão para a movimentação do jogo.">
                 <a href="https://github.com/CesarZanelatto/MotionVerse" target="_blank" rel="external">
                     <video autoplay muted loop>
                         <source src="frontend/assets/videos/motionVerse.mp4" type="video/mp4">
@@ -173,23 +175,23 @@
         </div>
     </section>
     <section class="contato">
-    <h2>Conecte-se Comigo</h2>
+    <h2 class="tts-trigger" data-tts="Conecte-se comigo.">Conecte-se Comigo</h2>
     <div class="qr-container">
-        <div class="qr-card">
+        <div class="qr-card tts-trigger" data-tts="GitHub. Escaneie para acessar meus projetos.">
             <a href="https://github.com/victorprogramer121" target="_blank" rel="external">
                 <img src="frontend/assets/images/qr_github.png">
                 <h3>GitHub</h3>
                 <p>Escaneie para acessar meus projetos.</p>
             </a>
         </div>
-        <div class="qr-card">
+        <div class="qr-card tts-trigger" data-tts="LinkedIn. Conheça minha trajetória profissional.">
             <a href="https://www.linkedin.com/in/victorbatista58306/" target="_blank" rel="external">
                 <img src="frontend/assets/images/qr_linkedin.png">
                 <h3>LinkedIn</h3>
                 <p>Conheça minha trajetória profissional.</p>
             </a>
         </div>
-        <div class="qr-card">
+        <div class="qr-card tts-trigger" data-tts="Currículo. Baixe meu currículo completo.">
             <a href="frontend/CV/CV_novo (1).pdf" target="_blank" rel="external">
                 <img src="frontend/assets/images/qr_curriculo.png">
                 <h3>Currículo</h3>
@@ -199,7 +201,7 @@
     </div>
     </section>
     <footer>
-        <p>
+        <p class="tts-trigger" data-tts="Direitos autorais 2026, Victor.">
             &copy; 2026 Victor
         </p>
     </footer>
