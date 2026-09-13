@@ -1,20 +1,22 @@
 const loading = document.getElementById("loading");
+const loadingProgress = document.querySelector(".loading-progress");
 
 const dialogo = document.getElementById("dialogo");
 const textoDialogo = document.getElementById("textoDialogo");
 
 const avatar = document.getElementById("avatar3d");
 
-const modal = document.getElementById("modal");
-
-const cards = document.querySelectorAll(".project-card");
-
 const barras = document.querySelectorAll(".progresso");
 
 const mensagemInicial =
 "Olá! Seja bem-vindo ao meu espaço. Aqui você encontrará um pouco da minha trajetória, tecnologias que utilizo e alguns projetos desenvolvidos por mim. Espero que goste!";
 
+
+let modeloCarregado = false;
+
+
 window.addEventListener("load", iniciarSistema);
+
 
 function iniciarSistema(){
 
@@ -22,61 +24,90 @@ function iniciarSistema(){
 
 }
 
+
 function iniciarLoading(){
+    loadingProgress.classList.remove("carregando");
+    loadingProgress.style.width = "100%";
+}
 
-    setTimeout(()=>{
 
-        loading.style.opacity="0";
+function terminarLoading(){
+
+    if(modeloCarregado === true){
+
+        loadingProgress.style.width = "100%";
 
         setTimeout(()=>{
 
-            loading.style.display="none";
+            loading.style.opacity = "0";
 
-            abrirDialogo();
+            setTimeout(()=>{
 
-            iniciarSkills();
+                loading.style.display = "none";
 
-            escreverFrase();
+                abrirDialogo();
 
-        },700);
+                iniciarSkills();
 
-    },2500);
+                escreverFrase();
 
-}
+            },700);
 
-function abrirDialogo(){
+        },300);
 
-    dialogo.style.display="block";
-
-    escreverDialogo(mensagemInicial);
+    }
 
 }
 
-function fecharDialogo(){
 
-    dialogo.style.opacity="0";
+avatar.addEventListener("load", () => {
 
-    setTimeout(()=>{
+    modeloCarregado = true;
 
-        dialogo.style.display="none";
+    terminarLoading();
 
-    },500);
+});
+
+
+function iniciarSkills(){
+
+    barras.forEach(barra=>{
+
+        const largura =
+            barra.classList.contains("html") ? "95%" :
+            barra.classList.contains("css") ? "90%" :
+            barra.classList.contains("js") ? "92%" :
+            barra.classList.contains("java") ? "62%" :
+            barra.classList.contains("mysql") ? "87%" :
+            barra.classList.contains("python") ? "77%" :
+            barra.classList.contains("typescritpt") ? "85%" :
+            "85%";
+
+        barra.style.width = "0";
+
+        setTimeout(()=>{
+
+            barra.style.width = largura;
+
+        },300);
+
+    });
 
 }
 
 function escreverDialogo(texto){
 
-    textoDialogo.innerHTML="";
+    textoDialogo.innerHTML = "";
 
-    let i=0;
+    let i = 0;
 
-    const intervalo=setInterval(()=>{
+    const intervalo = setInterval(()=>{
 
-        textoDialogo.innerHTML+=texto.charAt(i);
+        textoDialogo.innerHTML += texto.charAt(i);
 
         i++;
 
-        if(i>=texto.length){
+        if(i >= texto.length){
 
             clearInterval(intervalo);
 
@@ -88,44 +119,25 @@ function escreverDialogo(texto){
 
 }
 
-function iniciarSkills(){
+function abrirDialogo(){
 
-    barras.forEach(barra=>{
+    dialogo.style.display = "block";
 
-        const largura=barra.classList.contains("html") ? "95%" :
-
-                      barra.classList.contains("css") ? "90%" :
-
-                      barra.classList.contains("js") ? "92%" :
-
-                      barra.classList.contains("java") ? "62%" :
-
-                      barra.classList.contains("mysql") ? "87%" :
-
-                      barra.classList.contains("python") ? "77%" :
-
-                      barra.classList.contains("typescritpt") ? "85%" :
-
-                      "85%";
-
-        barra.style.width="0";
-
-        setTimeout(()=>{
-
-            barra.style.width=largura;
-
-        },300);
-
-    });
+    escreverDialogo(mensagemInicial);
 
 }
 
-// Guarda se o modelo já terminou de carregar
-let modeloCarregado = false;
 
-// O model-viewer dispara "load" quando o .glb termina de carregar
-avatar.addEventListener("load", () => {
+function fecharDialogo(){
 
-    modeloCarregado = true;
+    dialogo.style.opacity = "0";
 
-});
+    setTimeout(()=>{
+
+        dialogo.style.display = "none";
+
+    },500);
+
+}
+
+s.setAttribute("data-trigger", "triggerId");

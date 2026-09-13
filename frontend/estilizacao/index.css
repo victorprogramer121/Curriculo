@@ -20,7 +20,7 @@ body{
     --card: rgba(37, 36, 36, 0.975);
     --background:#000000;
     --container:#1A2236;
-    --primary:yellow;
+    --primary:#ffff00;
     --white:#FFFFFF;
     --text:#D9D9D9;
     --radius:18px;
@@ -82,6 +82,10 @@ header h2{
     grid-template-columns:320px 1fr;
     gap:35px;
     flex:1;
+}
+
+.meuWidget{
+    background-color: var(--primary);
 }
 
 .avatar{
