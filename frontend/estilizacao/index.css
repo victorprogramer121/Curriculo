@@ -77,11 +77,18 @@ header h2{
     font-weight:500;
 }
 
+.widget {
+    opacity: 0;
+    pointer-events: none;
+}
+
 .voz{
     position:fixed;
     right:22px;
     z-index:999;
     top:65px;
+    opacity: 0;
+    pointer-events: none;
 }
 
 .voz button{

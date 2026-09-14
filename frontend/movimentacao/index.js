@@ -44,6 +44,20 @@ function terminarLoading(){
 
                 loading.style.display = "none";
 
+                const botaoVoz = document.querySelector(".voz");
+
+                if (botaoVoz) {
+                    botaoVoz.style.opacity = "1";
+                    botaoVoz.style.pointerEvents = "auto";
+                };
+
+                const widget = documento.querySelector(".widget");
+
+                if(widget) {
+                    widget.style.opacity = "1";
+                    widget.style.pointerEvents = "auto";
+                }
+
                 abrirDialogo();
 
                 iniciarSkills();
