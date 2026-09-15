@@ -120,7 +120,7 @@ function escreverDialogo(texto){
 
             clearInterval(intervalo);
 
-            setTimeout(fecharDialogo,8000);
+            setTimeout(fecharDialogo,20000);
 
         }
 
