@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Victor</title>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="frontend/estilizacao/index.css">
-    <link rel="stylesheet" href="frontend/estilizacao/animations.css">
-    <link rel="stylesheet" href="frontend/estilizacao/responsive.css">
-    <link rel="shortcut icon" href="frontend/assets/favicon/favicon.png" type="image/png">
+    <link rel="stylesheet" href="./frontend/estilizacao/index.css">
+    <link rel="stylesheet" href="./frontend/estilizacao/animations.css">
+    <link rel="stylesheet" href="./frontend/estilizacao/responsive.css">
+    <link rel="shortcut icon" href="./frontend/assets/favicon/favicon.png" type="image/png">
     <!-- Biblioteca para renderizar modelos 3D (.glb) -->
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script type="module" src="https://unpkg.com/@google/model-viewer@4.0.0/dist/model-viewer.min.js"></script>
     <script class="widget" src = " https://cdn.userway.org/widget.js "  data-account = " tLBuE96xZS " data-color="#ffff00" data-type="1" data-mobile="true"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=volume_up" />
 
@@ -34,7 +35,7 @@
         <div class="avatar">
             <model-viewer
                 id="avatar3d"
-                src="frontend/3D/Victor.compressed.glb"
+                src="./frontend/3D/Victor.compressed.glb"
                 alt="Avatar 3D de Victor"
                 autoplay
                 auto-rotate
@@ -114,10 +115,7 @@
         <div class="cards">
             <div class="project-card tts-trigger" data-project="doce" data-tts="DoceEncanto. Cardápio de uma doceria.">
                 <a href="https://github.com/victorprogramer121/DoceEncanto" target="_blank" rel="external">
-                    <video autoplay muted loop playsinline webkit-playsinline>
-                        <source src="frontend/assets/videos/DoceEncanto.mp4" type="video/mp4">
-                        <source src="frontend/assets/videos/DoceEncanto.webm" type="video/webm">
-                    </video>
+                    <video src="./frontend/assets/videos/DoceEncanto.mp4" muted loop playsinline preload="none"></video>
                     <h3>DoceEncanto</h3>
                     <p>
                         Cardápio de uma doceria
@@ -126,10 +124,7 @@
             </div>
             <div class="project-card tts-trigger" data-project="uptickets" data-tts="UpTickets. Sistema de Eventos.">
                 <a href="https://github.com/victorprogramer121/UpTickets" target="_blank" rel="external">
-                    <video autoplay muted loop playsinline webkit-playsinline>
-                        <source src="frontend/assets/videos/uptickets.mp4" type="video/mp4">
-                        <source src="frontend/assets/videos/uptickets.webm" type="video/webm">
-                    </video>
+                    <video src="./frontend/assets/videos/uptickets.mp4" muted loop playsinline preload="none"></video>
                     <h3>UpTickets</h3>
                     <p>
                         Sistema de Eventos
@@ -138,10 +133,7 @@
             </div>
             <div class="project-card tts-trigger" data-project="spotify" data-tts="Spotify. Reprodução de um sistema.">
                 <a href="https://github.com/victorprogramer121/projetoSpotify"  target="_blank" rel="external">
-                    <video autoplay muted loop playsinline webkit-playsinline>
-                        <source src="frontend/assets/videos/Spotify.mp4" type="video/mp4">
-                        <source src="frontend/assets/videos/Spotify.webm" type="video/webm">
-                    </video>
+                    <video src="./frontend/assets/videos/Spotify.mp4" muted loop playsinline preload="none"></video>
                     <h3>Spotify</h3>
                     <p>
                         Reprodução de um sistema
@@ -150,10 +142,7 @@
             </div>
             <div class="project-card tts-trigger" data-project="waygo" data-tts="WayGo. Banco de Dados de um sistema para viagens B2B.">
                 <a href="https://github.com/leandroxelor00/banco-de-dados" target="_blank" rel="external">
-                    <video autoplay muted loop playsinline webkit-playsinline>
-                        <source src="frontend/assets/videos/banco_dados.mp4" type="video/mp4">
-                        <source src="frontend/assets/videos/banco_dados.webm" type="video/webm">
-                    </video>
+                    <video src="./frontend/assets/videos/banco_dados.mp4" muted loop playsinline preload="none"></video>
                     <h3>WayGo</h3>
                     <p>
                         Banco de Dados de um sistema para viagens B2B
@@ -162,13 +151,19 @@
             </div>
             <div class="project-card tts-trigger" data-project="motionVerse" data-tts="Motion Verse. Jogo em 2D que capta a mão para a movimentação do jogo.">
                 <a href="https://github.com/CesarZanelatto/MotionVerse" target="_blank" rel="external">
-                    <video autoplay muted loop playsinline webkit-playsinline>
-                        <source src="frontend/assets/videos/motionVerse.mp4" type="video/mp4">
-                        <source src="frontend/assets/videos/motionVerse.webm" type="video/webm">
-                    </video>
+                    <video src="./frontend/assets/videos/motionVerse.mp4" muted loop playsinline preload="none"></video>
                     <h3>Motion Verse</h3>
                     <p>
                         Jogo em 2D que capta a mão para a movimentação do jogo
+                    </p>
+                </a>
+            </div>
+            <div class="project-card tts-trigger" data-project="saudeaqui" data-tts="Saude Aqui, sistema voltado a facilitar pacientes. Mostrando dados de quantidades de pacientes, especialidades e quantidades de médicos em cada unidade de saúde pública do Brasil.">
+                <a href="https://github.com/victorprogramer121/Saude-Aqui" target="_blank" rel="external">
+                    <video src="./frontend/assets/videos/saudeAqui.mp4" muted loop playsinline preload="none"></video>
+                    <h3>Saude Aqui</h3>
+                    <p>
+                        Sistema voltado a saúde pública do Brasil
                     </p>
                 </a>
             </div>
@@ -179,21 +174,21 @@
     <div class="qr-container">
         <div class="qr-card tts-trigger" data-tts="GitHub. Escaneie para acessar meus projetos.">
             <a href="https://github.com/victorprogramer121" target="_blank" rel="external">
-                <img src="frontend/assets/images/qr_github.png">
+                <img src="frontend/assets/images/qrGithub.png" alt="QR Code do GitHub" width="170" height="170" loading="lazy" decoding="async">
                 <h3>GitHub</h3>
                 <p>Escaneie para acessar meus projetos.</p>
             </a>
         </div>
         <div class="qr-card tts-trigger" data-tts="LinkedIn. Conheça minha trajetória profissional.">
             <a href="https://www.linkedin.com/in/victorbatista58306/" target="_blank" rel="external">
-                <img src="frontend/assets/images/qr_linkedin.png">
+                <img src="frontend/assets/images/qrLinkedin.png" alt="QR Code do LinkedIn" width="170" height="170" loading="lazy" decoding="async">
                 <h3>LinkedIn</h3>
                 <p>Conheça minha trajetória profissional.</p>
             </a>
         </div>
         <div class="qr-card tts-trigger" data-tts="Currículo. Baixe meu currículo completo.">
-            <a href="frontend/CV/CV_novo (1).pdf" target="_blank" rel="external">
-                <img src="frontend/assets/images/qr_curriculo.png">
+            <a href="./frontend/CV/curriculo_CV.pdf" target="_blank" rel="external">
+                <img src="./frontend/assets/images/qrCV.png" alt="QR Code do currículo" width="170" height="170" loading="lazy" decoding="async">
                 <h3>Currículo</h3>
                 <p>Baixe meu currículo completo.</p>
             </a>
@@ -222,12 +217,10 @@
             Carregando Perfil...
         </h2>
         <div class="loading-bar">
-            <div class="loading-progress">
-                <div class="loading-progress.carregando"></div>
-            </div>
+            <div class="loading-progress"></div>
         </div>
     </div>
 </div>
-<script src="frontend/movimentacao/index.js"></script>
+<script src="./frontend/movimentacao/index.js"></script>
 </body>
 </html>

@@ -11,71 +11,129 @@ const barras = document.querySelectorAll(".progresso");
 const mensagemInicial =
 "Olá! Seja bem-vindo ao meu espaço. Aqui você encontrará um pouco da minha trajetória, tecnologias que utilizo e alguns projetos desenvolvidos por mim. Espero que goste!";
 
-let modeloCarregado = false;
+let loadingEncerrado = false;
+
+// Tempo máximo de espera apenas para o caso do <model-viewer> nem chegar a existir
+// (ex.: biblioteca bloqueada ou CDN fora do ar). Se ele existir, o loading espera o .glb.
+const TEMPO_MAX_BIBLIOTECA = 15000;
 
 
-window.addEventListener("load", iniciarSistema);
+// ---------- LOADING: só sai quando o modelo 3D (arquivo principal) terminar de carregar ----------
 
-
-function iniciarSistema(){
-
-    iniciarLoading();
-
+function atualizarProgresso(porcentagem){
+    loadingProgress.style.width = Math.round(porcentagem * 100) + "%";
 }
 
+// Barra acompanha o download real do .glb
+avatar.addEventListener("progress", (evento) => {
+    // Nunca chega a 100% antes do evento "load" (a barra só completa quando o modelo está pronto)
+    atualizarProgresso(Math.min(evento.detail.totalProgress, 0.99));
+});
 
-function iniciarLoading(){
-    loadingProgress.classList.remove("carregando");
-    loadingProgress.style.width = "100%";
-}
+const modeloPronto = new Promise((resolve) => {
+
+    // Caso o modelo já tenha carregado antes de este script rodar
+    if (avatar.loaded) {
+        resolve();
+        return;
+    }
+
+    avatar.addEventListener("load", resolve, { once: true });
+
+    // Se o .glb falhar, não deixa o visitante preso na tela de carregamento
+    avatar.addEventListener("error", (evento) => {
+        console.error("Erro ao carregar o modelo 3D:", evento.detail);
+        resolve();
+    }, { once: true });
+
+    // <model-viewer> não existe (biblioteca não carregou)
+    Promise.race([
+        customElements.whenDefined("model-viewer"),
+        new Promise((_, rejeitar) => setTimeout(rejeitar, TEMPO_MAX_BIBLIOTECA))
+    ]).catch(() => {
+        console.error("model-viewer não carregou.");
+        resolve();
+    });
+
+});
+
+// Também espera as fontes, para o texto não "pular" quando o loading sumir
+const fontesProntas = (document.fonts && document.fonts.ready)
+    ? document.fonts.ready.catch(() => {})
+    : Promise.resolve();
+
+Promise.all([modeloPronto, fontesProntas]).then(terminarLoading);
 
 
 function terminarLoading(){
 
-    if(modeloCarregado === true){
+    if (loadingEncerrado) return;
+    loadingEncerrado = true;
 
-        loadingProgress.style.width = "100%";
+    atualizarProgresso(1);
+
+    setTimeout(()=>{
+
+        loading.style.opacity = "0";
 
         setTimeout(()=>{
 
-            loading.style.opacity = "0";
+            loading.style.display = "none";
 
-            setTimeout(()=>{
+            const botaoVoz = document.querySelector(".voz");
+            const widget = document.querySelector(".widget");
 
-                loading.style.display = "none";
+            if (botaoVoz) {
+                botaoVoz.style.opacity = "1";
+                botaoVoz.style.pointerEvents = "auto";
+            }
 
-                const botaoVoz = document.querySelector(".voz");
-                const widget = document.querySelector(".widget");
+            if (widget) {
+                widget.style.opacity = "1";
+                widget.style.pointerEvents = "auto";
+            }
 
-                if (botaoVoz,widget) {
-                    botaoVoz.style.opacity = "1";
-                    botaoVoz.style.pointerEvents = "auto";
-                    widget.style.opacity = "1";
-                    widget.style.pointerEvents = "auto";
-                }
+            abrirDialogo();
 
-                abrirDialogo();
+            iniciarSkills();
 
-                iniciarSkills();
+            iniciarVideos();
 
-                escreverFrase();
+        },700);
 
-            },700);
-
-        },300);
-
-    }
+    },300);
 
 }
 
 
-avatar.addEventListener("load", () => {
+// ---------- VÍDEOS: só começam a baixar depois do loading, e só tocam quando visíveis ----------
 
-    modeloCarregado = true;
+function iniciarVideos(){
 
-    terminarLoading();
+    const videos = document.querySelectorAll(".project-card video");
 
-});
+    if (!("IntersectionObserver" in window)) {
+        videos.forEach(video => video.play().catch(() => {}));
+        return;
+    }
+
+    const observador = new IntersectionObserver((entradas) => {
+
+        entradas.forEach(entrada => {
+
+            if (entrada.isIntersecting) {
+                entrada.target.play().catch(() => {});
+            } else {
+                entrada.target.pause();
+            }
+
+        });
+
+    }, { threshold: 0.25 });
+
+    videos.forEach(video => observador.observe(video));
+
+}
 
 
 function iniciarSkills(){
@@ -89,7 +147,7 @@ function iniciarSkills(){
             barra.classList.contains("java") ? "62%" :
             barra.classList.contains("mysql") ? "87%" :
             barra.classList.contains("python") ? "77%" :
-            barra.classList.contains("typescritpt") ? "85%" :
+            barra.classList.contains("typescript") ? "85%" :
             "85%";
 
         barra.style.width = "0";
