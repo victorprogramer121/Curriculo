@@ -1,4 +1,4 @@
-## Olá pessoal!!! 👋
+## Olá pessoal!!! 
 
 Meu nome é Victor, atualmente estou cursando Ciências da Computação na Unip. 
 Trabalho na área de suporte na empresa Lemontech, porém pretendo mudar de carreira para programador Fullstack.
